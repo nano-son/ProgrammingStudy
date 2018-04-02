@@ -4,7 +4,7 @@ Thrift 공부
 Thrift라는 통신 방법을 사용하여 다른 서버와 통신하는 서버를 다루게 됐다.
 보통 웹서버를 다루면 HTTP통신 + JSON/XML 이 정통적인 방식인데, 생소했다.
 
-#### 개발 당시 Thrift 통신을 채택한데에는 몇가지 이유가 있다.
+개발 당시 Thrift 통신을 채택한데에는 몇가지 이유가 있다.
 <pre>
 1. Http는 직렬화, 역직렬화가 필요하고 JSON, XML을 사용하기 위해선 파싱 작업이 필요해서 비용이 크다.
 2. Thrift는 바이너리 데이터 전송도 가능해서 메모리가 적게 들고, 더 빠르다.
@@ -22,7 +22,66 @@ RPC(Remote Procedure Call) 방식을 대표하는 통신 프레임워크로, 아
 
 ## RPC?
 <pre>
-Remote Procedure Call의 약자로,  원격 API를 호출하는 방법이다. REST 방식은 URI를 자원으로 표현하고 이를 요청하여 원격 서버의 리소스에 대한 상태를 주고받는 방식이다. 
-반면에, RPC 는 IDL(Interface Definition Language) 를 통해 원격 서버의 메소드 스펙을 알 수 있고, 이 메소드를 호출하여 네트워크 통신 과정을 추상화 한 것이라고 볼 수 있다. 결과적으로 프로그래머는 네트워크 통신 작업을 신경쓰지 않고 비즈니스 로직 개발에 더 집중할 수 있다.
+ Remote Procedure Call의 약자로,  원격 API를 호출하는 방법이다.
+ REST 방식은 URI를 자원으로 표현하고 이를 요청하여 원격 서버의 리소스에 대한 상태를 주고받는 방식이다. 
+ 반면에, RPC 는 IDL(Interface Definition Language) 를 통해 원격 서버의 메소드 스펙을 알 수 있고,
+ 이 메소드를 호출하여 네트워크 통신 과정을 추상화 한 것이라고 볼 수 있다.
+ 결과적으로 프로그래머는 네트워크 통신 작업을 신경쓰지 않고 비즈니스 로직 개발에 더 집중할 수 있다.
 </pre>
 
+## Thrift Work Flow
+<pre>
+1. IDL로 통신 인터페이스를 작성한다 (작성 방법은 곧 살펴보자)
+2. 작성한 인터페이스 코드를 RPC 프레임워크에서 제공하는 툴을 이용해서, 각 언어에서 사용할 소스코드 생성
+3. 생성된 소스코드를 이용하여 클라이언트/서버 개발
+</pre>
+
+
+## 통신 인터페이스 작성
+간단한 통신 인터페이스를 작성해보자.
+Get.thrift 라는 파일을 작성해보았다.
+<pre>
+namespace java nano.thrift.get
+
+struct HelloWorld {
+    1: optional string msg,
+    2: optional string name,
+    3: optional i32 age
+}
+
+enum ResponseCode {
+    SUCCESS = 200,
+    ERROR = 500,
+    NOT_FOUND = 404,
+    INVALID_REQUEST = 400
+}
+
+struct ResponseHelloWorld {
+    1: required ResponseCode responseCode,
+    2: optional String msg
+}
+
+service GetService {
+    ResponseHelloWorld helloworld(1:HelloWorld helloworld)
+}
+</pre>
+
+struct, enum은 요청으로 넘어올 데이터를 매핑할 자료형이다. 
+optional은 없어도 되는 값이지만, required는 반드시 필요한 데이터이다. 따라서 값이 채워져있어야 한다.
+
+namespace 선언을 통해 사용할 언어, 생성될 소스코드의 패키지명을 정의할 수 있다.
+
+## Complie
+컴파일을 하기 위해선 thrift 명령어가 필요하다. 
+구글에 검색하면 설치방법이 많이 나오니 생략하겠다.
+현재 나의 thrift --version의 결과는 0.10.0이다. (현재 최신 버전은 0.11.0 로 알고있다)
+
+이제 .thrift 파일이 있는 곳으로 경로를 이동하여 아래 명령을 수행하여 컴파일 해보자.
+
+<pre>
+thrift --gen java Get.thrift
+</pre>
+
+통신 인터페이스는 짧은데 생각보다 긴 자바 소스코드가 튀어나왔다.
+
+![Alt text](/Users/kakao/Desktop/thrift1.png)
