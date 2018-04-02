@@ -84,4 +84,4 @@ thrift --gen java Get.thrift
 
 통신 인터페이스는 짧은데 생각보다 긴 자바 소스코드가 튀어나왔다.
 
-![Alt text](/Users/kakao/Desktop/thrift1.png)
+![Alt text](./thrift1.png)
