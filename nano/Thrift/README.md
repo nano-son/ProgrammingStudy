@@ -80,8 +80,22 @@ namespace 선언을 통해 사용할 언어, 생성될 소스코드의 패키지
 
 <pre>
 thrift --gen java Get.thrift
+>thrift 명령어로 Get.thrift 인터페이스를 컴파일해서 java 소스코드를 generate 해라 라는 뜻
+
+thrift --gen java -o ../thrift/ Get.thrift
+>Output Directory를 -o 옵션으로 지정
+
+
 </pre>
 
 통신 인터페이스는 짧은데 생각보다 긴 자바 소스코드가 튀어나왔다.
 
 ![Alt text](./thrift1.png)
+이렇게 gen-java 디렉토리 하위에 자바 소스 코드들이 생겼고 GetService의 iface라는 내부 인터페이스가 존재하는데, 이 인터페이스에 통신 인터페이스의 메소드들이 정의되어 있다.
+
+서버 개발자는 이 내용을 jar로 뽑아내서 가져가 구현하면 된다.
+maven에서 install을 진행하면 jar 파일이 생성되는 것을 확인할 수 있다.
+![maven install](./thrift2.png)
+
+maven 설정을 변경한 적이 없다면 디폴트로  .m2/repository 라는 로컬 디렉토리에 jar 파일이 생성된다.
+한번 확인해보기!
