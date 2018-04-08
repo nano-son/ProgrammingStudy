@@ -43,22 +43,22 @@ Adapter Pattern
 
 코드 구성은 아래와 같다. (실제 코드는 따로 파일을 올릴거임)
 
-###### 소니 렌즈
-![sonyLens code](./cature/sonyLens.png)
+##### 소니 렌즈
+![sonyLens code](./capture/sonyLens.png)
 
-###### 캐논 렌즈
+##### 캐논 렌즈
 ![canonLens code](./capture/canonLens.png)
 
-###### 카메라
+##### 카메라
 ![camere code](./capture/camera.png)
 
-###### 어댑터
+##### 어댑터
 ![adapter code](./capture/adapter.png)
 
-###### 실행
+##### 실행
 ![main code](./capture/main.png)
 
-###### 실행 결과
+##### 실행 결과
 ![result](./capture/result.png)
 
 조금 억지스러운 예시이긴 하지만.. 개념에만 집중해보자
