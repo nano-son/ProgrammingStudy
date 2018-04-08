@@ -37,7 +37,7 @@ BOJ 9999 문제를 풀면서 Scanner가 얼마나 느린지 알 수 있었다.
 상황 : 10만개의 정수를 입력받아야함
 
 #### Scanner
-<pre>
+```
     public static void test1() {
         Scanner in = new Scanner(System.in);
         n = in.nextInt();
@@ -49,7 +49,8 @@ BOJ 9999 문제를 풀면서 Scanner가 얼마나 느린지 알 수 있었다.
         System.out.println((end-start)/(double)1000);
         System.out.println(result);
     }
-</pre>
+```
+
 
 > Scanner 1차측정
 ![Scanner 1차 측정](./Scanner_1.png)
