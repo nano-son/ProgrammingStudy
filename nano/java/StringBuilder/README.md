@@ -12,7 +12,7 @@ java는 문자열에 대한 지원을 아주 잘 하고 있다.
 
 ## 성능 측정
 50000개의 정수를 반복해서 이어붙이는 작업을 String객체, StringBuilder객체를 사용했을 때 어떻게 시간이 걸리는지 측정해보자.
-<pre>
+```
 public class Main {
     static final int MAX = 50000;
     public static void main(String[] args) {
@@ -38,7 +38,7 @@ public class Main {
         System.out.println("time:"+(end-start)/(double)1000);
     }
 }
-</pre>
+```
 
 성능 차이는 충격적이었다.
 ![성능차이](./performance.png)
