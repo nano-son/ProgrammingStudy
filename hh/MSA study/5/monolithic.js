@@ -63,7 +63,6 @@ function onRequest(res, method, pathname, params) {
     //res.end("response"); // 모든 요청에 response
 }
 
-
 //JSON 형태로 응답
 function response(res, packet) {
     res.writeHead(200, { 'Context-Type' : 'application/json' });
