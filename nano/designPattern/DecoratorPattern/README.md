@@ -10,7 +10,7 @@ Decorator Pattern
 In object-oriented programming, the decorator pattern is a design pattern that allows behavior to be added to an individual object, either statically or dynamically, without affecting the behavior of other objects from the same class.[1] The decorator pattern is often useful for adhering to the Single Responsibility Principle, as it allows functionality to be divided between classes with unique areas of concern.[2] The decorator pattern is structurally nearly identical to the chain of responsibility pattern, the difference being that in a chain of responsibility, exactly one of the classes handles the request, while for the decorator, all classes handle the request.
 ```
 
-> 즉, 코드 수정 없이 클래스를 확장할 수 있다라는 개념인데, 아직 감이 잘 잡히질 않는다.
+#### 즉, 코드 수정 없이 클래스를 확장할 수 있다라는 개념인데, 아직 감이 잘 잡히질 않는다.
 
 OOP 원칙 중 Open-Closed Principle을 잘 만족하는 예라고 할 수 있다.
 > OCP : 확장에는 열려있고 변경에는 닫혀있어야 한다.
