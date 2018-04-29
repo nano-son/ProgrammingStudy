@@ -72,5 +72,8 @@ print "Ah, so your name is %s, your quest is %s, " \
 "and your favorite color is %s." % (name, quest, color)
 ```
 
+## 모듈
+모듈은 python의 강력한 장점이다.
+많은 모듈들이 존재하고 쉽게 가져와 사용할 수 있다.
 
 
