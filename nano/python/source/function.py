@@ -1,3 +1,5 @@
+# -*- coding: utf8 -*-
+from math import *
 def greeting(name, hobby):
 	print "hello world! this is greeting function! ",
 	print "your name is %s, and your hobby is %s !! awesome!!" %(name, hobby)
@@ -36,6 +38,7 @@ print print_num(10) #it would print 'none'. because, print_num function return n
 
 print str(math(math(1,2,'+'),10,'*'))
 
+# 파일 입출력을 이렇게 할 수 있다.
 
 with open("hello.txt",'r') as f:
 	while True:
@@ -48,15 +51,29 @@ with open("hello.txt",'r') as f:
 
 
 
+def biggest_number(*args):
+  print max(args)
+  return max(args)
+    
+def smallest_number(*args):
+  print min(args)
+  return min(args)
+
+def distance_from_zero(arg):
+  print abs(arg)
+  return abs(arg)
+
+biggest_number(-10, -5, 5, 10)
+smallest_number(-10, -5, 5, 10)
+distance_from_zero(-10)
 
 
+print type(max(1,2,3))
+print type(pi)
+print type("hello world")
 
 
-
-
-
-
-
-
+inspectation_of_math = dir(math)
+print inspectation_of_math
 
 
