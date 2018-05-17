@@ -1,7 +1,3 @@
-/*
-	다익스트라 기본 문제
-*/
-
 
 #include <stdio.h>
 #include <queue>

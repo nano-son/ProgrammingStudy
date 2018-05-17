@@ -1,9 +1,5 @@
 #include <iostream>
 
-/*
-	쉬운거라도 방심하지말자
-*/
-
 int N, M;
 int arr[41];
 int dp[41];

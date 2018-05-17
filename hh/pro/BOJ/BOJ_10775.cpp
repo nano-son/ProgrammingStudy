@@ -11,7 +11,7 @@ void init()
 {
 	for (int i = 0; i <= G; i++)
 	{
-		parent[i] = i;	//자기자신을 부모로 가지도록 init
+		parent[i] = i;	
 	}
 }
 
@@ -27,7 +27,7 @@ void union2(int u, int v)
 	u = find(u);
 	v = find(v);
 
-	if (u == v) return; // 이미 같은 트리
+	if (u == v) return; 
 	parent[u] = v;
 
 }

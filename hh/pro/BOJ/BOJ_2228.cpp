@@ -14,7 +14,7 @@ int max(int a, int b)
 	return b;
 }
 
-// n개를 m으로 나누는데 최대값 반환
+
 int process(int n, int m)
 {
 	int *ret = &dp[n][m];

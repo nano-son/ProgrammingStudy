@@ -1,7 +1,3 @@
-/*
-	bfs¹®Á¦ ¿¬½ÀÇÏ±â ÁÁÀº ¹®Á¦
-	²À ±ò²ûÇÑ ÄÚµå¸¦ ¹è¿ï ÇÊ¿ä°¡ ÀÖ´Ù.
-*/
 
 #include <iostream>
 #include <queue>
@@ -70,7 +66,7 @@ int main()
 		}
 	}
 
-	//1ÀÎ °÷ dept 0 À¸·Î push
+	//1ï¿½ï¿½ ï¿½ï¿½ dept 0 ï¿½ï¿½ï¿½ï¿½ push
 	for (int i = 1; i <= N; i++)
 	{
 		for (int j = 1; j <= M; j++)
