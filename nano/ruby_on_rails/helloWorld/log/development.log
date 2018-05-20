@@ -1,0 +1,12 @@
+
+
+Started GET "/" for ::1 at 2018-04-20 01:12:07 +0900
+Processing by Rails::WelcomeController#index as HTML
+  Rendered /Users/kakao/.rvm/gems/ruby-2.2.7@rails427/gems/railties-4.2.7/lib/rails/templates/rails/welcome/index.html.erb (1.3ms)
+Completed 200 OK in 16ms (Views: 8.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/hello/index" for ::1 at 2018-04-20 01:18:47 +0900
+Processing by HelloController#index as HTML
+  Rendered text template (0.0ms)
+Completed 200 OK in 14ms (Views: 6.3ms | ActiveRecord: 0.0ms)
