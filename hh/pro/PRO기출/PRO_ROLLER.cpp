@@ -14,7 +14,7 @@ typedef struct node {
 }node;
 
 node arr[10001];
-int dp[1001][1001]; // dp[i][j]: i위치까지 부품을 채우고 j 잼을 남겼을 때 최대 잼
+int dp[1001][1001]; 
 
 void init() {
 	for (int i = 0; i <= L; i++) {
@@ -50,7 +50,7 @@ int main(){
 			arr[i].fun = fun;
 			arr[i].cost = cost;
 		}
-		// 부품 시작 위치에 대해서 소팅
+		
 		sort(arr, arr + N, compare);
 		
 		for (int i = 0; i < N; i++) {
@@ -60,7 +60,7 @@ int main(){
 			fun = arr[i].fun;
 			cost = arr[i].cost;
 
-			// 맨 처음 부품
+			
 			if (x == 0) {
 				dp[x + len][B - cost] = fun;
 			}
