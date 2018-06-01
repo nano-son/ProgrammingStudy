@@ -1,5 +1,14 @@
 var map = {};
 
+/*
+    distributor는 모든 노드들이 접속해 있는 서버, 그 안에 각 노드들의 정보(포트, 노드이름, 처리가능한 urls)를 저장하고 있다.
+*/
+
+/*
+    1. 노드가 접속하면 접속한 노드에 현재 접속 중인 다른 노드들의 정보를 제공,
+    2. 노드가 종료되면 다른 접속된 노드에 전파
+*/
+
 class distributor extends require('./server.js') {
     constructor() {
         super("distributor", 9000, ["POST/distributors", "GET/distributors"]);
@@ -61,6 +70,4 @@ class distributor extends require('./server.js') {
             }
         }
     }
-
-
 }

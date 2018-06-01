@@ -43,7 +43,7 @@ class tcpServer {
                     } else if (arr[n] == "") {
                         break;
                     } else {
-                        this.onRead(socket, JSON.parse(arr[n]));
+                        this.onRead(socket, JSON.parse(arr[n])); // 상속 받는 js파일에서 구현
                     }
 
                 }
