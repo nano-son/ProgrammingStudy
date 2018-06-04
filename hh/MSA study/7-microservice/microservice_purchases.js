@@ -1,6 +1,7 @@
 'use strict'
 
-const business = require('../5-monolithic/monolithic_purchases.js')
+const business = require('../5-monolithic/monolithic_purchases.js');
+const cluster = require('cluster');
 
 class purchases extends require('../6-distributor/server.js') {
     
@@ -21,8 +22,17 @@ class purchases extends require('../6-distributor/server.js') {
         business.onRequest(socket, data.method, data.uri, data.params
                         , (s, packet) => {
                             socket.write(JOSN.stringify(packet) + '¶');
-                        })
+                        });
     }
 }
 
-new purchases();
+if (cluster.isMaster) {
+    cluster.fork();
+
+    cluster.on('exit', (worker, code, signal) => {
+        console.log('worker ${worker.process.pid} died');
+        cluster.fork();
+    });
+} else {
+    new purchases();
+}

@@ -10,7 +10,7 @@ const querystring = require('querystring');
 
 const tcpClient = require('../6-distributor/client.js'); // HTTP 게이트웨이가 마이크로 서비스들과 통신하려고 Client 클래스 참조
 
-var mapClient = {}; // Client(호스트, 포트) 로 접속해있는 client 저장해둔 map -> 요청후 삭제
+var mapClients = {}; // Client(호스트, 포트) 로 접속해있는 client 저장해둔 map -> 요청후 삭제
 var mapUrls = {}; // method+pathname / 처리 가능한 API URL 을 key값으로 가지고 그걸 담당하는 서비스를 반환
 var mapResponse = {}; // res 객체를 저장하는 배열
 var mapRR = {};
@@ -92,11 +92,12 @@ function onRequest(res, method, pathname, params) {
     var key = method + pathname;
     var client = mapUrls[key];
 
+    // distributor로 받은 urls에 없는 요청 버리기
     if (client == null) {
         res.writeHead(404);
         res.end();
         return;
-    } else {
+    } else { // 있는 요청 응답
         params.key = index;
 
         var packet = {
@@ -127,10 +128,10 @@ function onDistribute(data) {
         var key = node.host + ":" + node.port;
 
         //게이트웨이에서 접속 하고 있지 않은 마이크로서비스의 Client클래스 인스턴스 생성
-        if (mapClient[key] == null && node.name != "gate") {
+        if (mapClients[key] == null && node.name != "gate") {
             var client = new tcpClient(node.host, node.port, onCreateClient, onReadClient, onEndClient, onErrorClient);
 
-            mapClient[key] = {
+            mapClients[key] = {
                 client: client,
                 info: node
             };
