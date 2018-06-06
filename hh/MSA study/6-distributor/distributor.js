@@ -1,3 +1,5 @@
+'use strict'
+
 var map = {};
 
 /*
@@ -11,6 +13,7 @@ var map = {};
 
 class distributor extends require('./server.js') {
     constructor() {
+        //노드이름, 포트, urls
         super("distributor", 9000, ["POST/distributors", "GET/distributors"]);
     }
     
@@ -28,6 +31,7 @@ class distributor extends require('./server.js') {
         this.sendInfo();
     }
 
+    // 접속한 노드가 자신의 정보를 보낸 걸 받는 이벤트 처리
     onRead(socket, json) {
         //키 생성
         var key = socket.remoteAddress + ":" + socket.remotePort;
@@ -46,7 +50,7 @@ class distributor extends require('./server.js') {
             
 
     write(socket, packet) {
-        socket.wirte(JSON.stringify(packet) + '¶');
+        socket.write(JSON.stringify(packet) + '¶');
     }
 
     //노드 접속 정보를 전파
@@ -71,3 +75,5 @@ class distributor extends require('./server.js') {
         }
     }
 }
+
+new distributor();
