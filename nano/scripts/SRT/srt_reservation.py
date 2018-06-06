@@ -2,8 +2,8 @@
 import requests
 import time
 import sys
+import re as regx
 from bs4 import BeautifulSoup as bs
-#계정 : 1584314147
 
 my_cookie = {
     'JSESSIONID_ETK': '9TlJyAnoWpw33CTnx1f0yprb10fmr1fTA1vIIrf3UGZaX1e1MXNvjZjAIdSOBXTT',
@@ -67,7 +67,7 @@ common_header = {
 }
 
 login_referer = "https://etk.srail.co.kr/cmc/01/selectLoginForm.do?pageId=TK0701000000"
-reserve_referer = "https://etk.srail.co.kr/hpg/hra/01/selectScheduleList.do?pageId=TK0101010000"
+check_seat_url = "https://etk.srail.co.kr/hpg/hra/01/selectScheduleList.do?pageId=TK0101010000"
 
 reserve_param = {
     'arvRsStnCd1': '0015', #도착역 코드
@@ -234,18 +234,21 @@ def checkSeat(start, dest, date, time_min = '000000', time_max = '220000'):
     param['dptDt'] = date
     param['dptTm'] = time_min+'0000'
 
-    print(header)
-    response = requests.post("https://etk.srail.co.kr/hpg/hra/01/selectScheduleList.do?pageId=TK0101010000", headers = header, params = param)
+    print("좌석 정보를 조회합니다..")
+    response = requests.post(check_seat_url, headers = header, params = param)
 
     #열차 정보만 가져온다.
     tr_list = bs(response.text, 'html.parser').select("tbody > tr")
     can_reserve_list = []
     for tr in tr_list:
+        depart_time = bs(str(tr), "html.parser").find('input', attrs={"name": regx.compile("dptTm*")})['value'] #regular expression
+        if int(time_min.ljust(6,'0')) > int(depart_time) or int(depart_time) > int(time_max.ljust(6,'0')):
+            print("depart_time:"+depart_time+"은 예약대상이 아닙니다.")
+            continue
         td_list = bs(str(tr), "html.parser").select('td')
         if "매진" not in str(td_list[6]):
             print("예약가능: {}, {}".format(td_list[3], td_list[4]))
             can_reserve_list.append(tr)
-
     return can_reserve_list
 
 def pay(r_id): #r_id : 예약 번호
@@ -261,9 +264,6 @@ def getSessionETK():
     else:
         return "-1"
 
-check_time_term = "3" #3초에 한번 확인
-
-######################################################################
 ######################################################################
 ######################################################################
 ######################################################################
@@ -271,10 +271,12 @@ check_time_term = "3" #3초에 한번 확인
 ######################################################################
 ######################################################################
 ######################################################################
-######################################################################
 
+check_time_term = 3 #3초에 한번 확인
 id = input("id입력:")
 pw = input("pw입력:")
+time_min = "0000"
+time_max = "2359"
 
 if login(id, pw)!=200:
     print("----login fail----")
@@ -295,12 +297,14 @@ while True:
 
 while True:
     date = input("승차할 날짜를 입력하세요 (ex. 20180515) ('-'포함금지) :")
-    print("승차하고자 하는 시간대를 입력해주세요 (ex 14시~16시)")
+    print("승차하고자 하는 시간대를 입력해주세요 (ex 14시~16시) (ex 14:40 ~ 16) (ex 14:20 ~ 16:30)")
     time_min = input("승차하고자 하는 가장 빠른 시간을 입력해주세요:")
+    time_min = time_min.replace(':','').replace('시','')
     time_max = input("승차하고자 하는 가장 늦은 시간을 입력해주세요:")
+    time_max = time_max.replace(':','').replace('시','')
     isRight = input("date = %s, 희망시간대는 %s ~ %s 맞나요?(y/n):"%(date, time_min, time_max))
     if isRight.lower() == 'y':
-        break;
+        break
 
 print("date = %s, 희망시간대는 %s ~ %s 로 열차를 검색하기 시작합니다" %(date, time_min, time_max))
 
@@ -314,32 +318,4 @@ while True:
     time.sleep(check_time_term)
 
 print ('end!!')
-
-temp = """
-
-검색 -> 예매하기 -> 좌석 고르기 -> 결
-
-cookie : JSESSESIONID, PCID, RC_COLOR, RC_RESOLUTION
-
-도착역 코드    arvRsStnCd	0015
-도착역 이름    arvRsStnCdNm	동대구
-???    chtnDvCd	1
-출발날짜    dptDt	20180507
-출발역 코드    dptRsStnCd	0551
-출발역 이    dptRsStnCdNm	수서
-출발시간    dptTm	150500
-리퀘스트인지..    isRequest	Y (불변)
-사람수(어른)    psgInfoPerPrnb1	1
-사람수(장애 1~3급)    psgInfoPerPrnb2	0
-사람수(장애 4~6급)    psgInfoPerPrnb3	0
-사람수(만65세 이상)    psgInfoPerPrnb4	0
-사람수(만4세~12세)   psgInfoPerPrnb5	0
-사람수(종합)    psgNum	1  (종합 수는 9명 이하여야한다.)
-좌석속성    rqSeatAttCd1 015  (일반015 / 휠체어 021 / 전동휠체어 028)
-좌석위    seatAttCd	015 (암때나 015 / 1인석 011/ 창측좌석 012 / 내측좌석 013) 
-???    stlbTrnClsfCd	05
-차종구분    trnGpCd	109 (전체 109 / SRT 300 / SRT+KTX 900)
-
-승차권종류 : pageId	TK0101010000 (일반승차권 TK0101010000 / 단체승차권 TK0101020000)
-"""
 
