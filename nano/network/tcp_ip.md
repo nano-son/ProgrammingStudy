@@ -82,7 +82,7 @@ Based on Greenwich standard time
 그러면서 Ack은 여러 패킷을 받은 것을 고려해서 기입한다.
 </pre>
 
-## Connection
+# Connection
 TCP  sender, receiver establish connection before exchanging data segments
 - Triggers allocation of transport entity resources (ex. buffers)
 - Negotiation of params (ex. Initial seq no, flow control info (receive window), MSS
@@ -93,16 +93,51 @@ Connection determined by source and destination sockets (IP address of host, por
 ### connection establishment
 Connection open : active(client) / passive(server)
 
-#### 3-way handshaking
+### Establishing Connection : 3-way handshaking
 너무나 많이 들어봤을 거다. 이제는 완벽하게 익히자
 <사진>
 
+<pre>
+그림 설명
+</pre>
 
+tcp에는 상태가 존재한다. 3-way 에서는 다음과 같은 상태변화가 있다.
+<3way tcp state 사진>
 
+tcp상태에 대해서는 나중에 자세히 살펴보자.
 
+### Closing Connection : 4-way handshaking (3-way로connection을 close 하는 경우도 있지만 정상적인 경우는 아니다)
+There are active close and passive close
+ 
+<4way 사진>
 
+마찬가지로 4way handshaking 중에 tcp state가 어떻게 바뀌는지 살펴보자
+<4way tcp state사진>
 
+> time-wait을 하는 이유 : 만약 마지막 패킷을 서버측이 받지 못하면 다시 보내달라고 패킷을 보내게 된다. 클라이언트가 이 여부를 확인하지 않고 마지막 ACK을 보내고 바로 끊어버리면 서버측은 무한정 대기할 수도 있다. 따라서 특정 시간을 기다렸는데 재요청이 안오면 서버가 마지막 패킷을 잘 받았다고 추측할 수 있는 상황이다. 그렇게 타임아웃이 발생하면 비로소 클라이언트도 연결을 완전히 끊는다.
 
+### TCP State Summary
+<state 요약 사진>
+
+<pre>
+state 사진 설명
+</pre>
+
+### TCP 6 ACK Rules
+
+1) Piggybacked ACK on suitable outbound data segement
+
+2) Send an explicit ACK 500ms after receiving data segment to suppress sending excessive ACK
+
+3) Send an explicit ACK when two data segments are accumulated to avoid unneccessary retransmission
+
+4) Send an explicit ACK when receiving out-of-order segment to inform the other side of segment loss
+
+5) Send an explicit ACK when receiving the lost segment
+
+6) Send an explicit ACK when receiving duplicate segment to cope with loss of ACK (cope with : 대응하다) 
+
+<ACK rule 예시 사진 3개 정도?>
 
 
 
