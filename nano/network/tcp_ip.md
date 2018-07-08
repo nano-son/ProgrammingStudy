@@ -57,7 +57,7 @@ Rcvr window size : 송신자가 자신의 여유 버퍼사이즈를 기록하여
 ### Acknowledgement number
 - Seq number of next byte expected from other side”
 - Ack flag가 1이여야 한다.
-- 송신자의 seq값 s와 ack값 a이 수신자가 받으면 다시 보낼때는 seq을 a로, ack를 s+1로 보낸다. 이게 반복
+- 송신자의 seq값 s와 ack값 a이 수신자가 받으면 다시 보낼때는 seq을 a로, ack를 s+payload+1로 보낸다. 이게 반복
 
 ### Option
 <pre>
