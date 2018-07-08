@@ -41,7 +41,7 @@ Tcp 헤더는 항상 4의 배수로 되는데 이를 맞추기 위해 Option에 
 6개의 flag
 U : URG(urgent data) 로 긴급 데이터를 담은 세그먼트를 표시할 때 사용한다. 실제로 거의 사용 안 된다.
 A : ACK 이 세그먼트가 Acknowledgement 를 알리기 위한 목적인지 표시
-P : PSH(Push Data now) 얼른 하위 레이어로 보내라는 플래그
+P : PSH(Push Data now) 얼른 상위 레이어로 보내라는 플래그
 R/S/F : RESET, SYN, FIN : Connection control (이 3개 중 하나라도 1이라면 TCP 세그먼트는 데이터를 실어나르지 못한다. RESET은 비정상 경우임
 
 Rcvr window size : 송신자가 자신의 여유 버퍼사이즈를 기록하여 넘기는 것으로, 수신측은 이를 받아서 보내줄 데이터의 양을 결정할 수 있으므로, Flow control이 일어나게된다.
