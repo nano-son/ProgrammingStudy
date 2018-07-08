@@ -15,6 +15,8 @@ tcp/ip를 처음 접했을 때는 대학교 2학년 때였다.
 그래서 다시 기억을 더듬으면서 다시 tcp 개념을 다잡을 것이다.
 
 ### 참고 사이트 : http://www.tcpipguide.com/index.htm
+### 참고 사이트 : https://d2.naver.com/helloworld/47667
+
 
 ## tcp overview
 
@@ -313,10 +315,18 @@ in TCB, stroes information of connection
 </pre>
 
 
-### Main
+### Main module
+
+<pre>
+Receive : a TCP segment, a msg from an application, or a time-out event
+1. TCB를 확인해서 해당하는 block이 있는지 확인한다.
+2. 없으면 state를 CLOSED로 만든다.
+3. TCB를 확인해 state에 따라 행동한다.(이때는 2번을 통해 무조건 TCB가 있을 수 밖에 없음) 
+</pre>
 
 
-
+여기까지가 TCP 기본 개념 설명 (추후 알게되는 사실이 있으면 계속 업데이트 할 예정)
+이제 각종 상황에 대해 공부해볼거다
 
 
 
