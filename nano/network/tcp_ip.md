@@ -123,6 +123,11 @@ There are active close and passive close
 
 > time-wait을 하는 이유 : 만약 마지막 패킷을 서버측이 받지 못하면 다시 보내달라고 패킷을 보내게 된다. 클라이언트가 이 여부를 확인하지 않고 마지막 ACK을 보내고 바로 끊어버리면 서버측은 무한정 대기할 수도 있다. 따라서 특정 시간을 기다렸는데 재요청이 안오면 서버가 마지막 패킷을 잘 받았다고 추측할 수 있는 상황이다. 그렇게 타임아웃이 발생하면 비로소 클라이언트도 연결을 완전히 끊는다.
 
+### 주의!!
+한 가지 주의할 점은 클라이언트와 서버 대신 Active Close와 Passive Close라는 표현을 사용한 것인데, 반드시 서버만 CLOSE_WAIT 상태를 갖는 것은 아니기 때문입니다. 서버가 먼저 종료하겠다고 FIN을 보낼 수 있고, 이런 경우 서버가 FIN_WAIT1 상태가 됩니다. 따라서, 클라이언트와 서버가 아닌 Active Close(또는 Initiator, 기존 클라이언트)와 Passive Close(또는 Receiver, 기존 서버)정도로 표현하는 것이 정확합니다.
+
+
+
 ### TCP State Summary
 <state 요약 사진>
 ![tcp finite state machine](./img/tcp_state_machine.png)
