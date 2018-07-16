@@ -2,7 +2,11 @@
 
 ## Commit Message
 
-> 하나의 커밋에 단 하나의 논리적 변경사항을 담아라. <br> Ex) Add a new feature….  ,  Fix a specific bug
+<b>하나의 커밋에 단 하나의 논리적 변경사항을 담아라.</b>
+Ex) Add a new feature….  ,  Fix a specific bug
+
+
+
 
 
 - 커밋 메세지만을 보고 다른 개발자가 똑같은 기능을 개발할 수 있도록.
