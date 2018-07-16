@@ -16,7 +16,7 @@ Ex) Add a new feature….  ,  Fix a specific bug
 - If applied, this commit will (     ) 여기에 넣어서 말이 되면 통과다.
 <br>
 <br>
-<br>
+
 > - 왜 커밋하려는 패치가 필요한가?<br>
 > - 목적에 어떻게 접근하는가? 포기한 접근 방법이 있다면 기술.<br>
 > - 패치를 적용함에 따라 어떤 영향이 있나? (개선 결과 -> 수치(범위로 표현 가능), Side effects, 벤치마킹 결과)<br>
