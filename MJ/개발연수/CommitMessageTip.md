@@ -3,7 +3,6 @@
 ## Commit Message
 
 <b>하나의 커밋에 단 하나의 논리적 변경사항을 담아라.</b>
-
 Ex) Add a new feature….  ,  Fix a specific bug
 
 
@@ -18,6 +17,8 @@ Ex) Add a new feature….  ,  Fix a specific bug
 - 제목에는 마침표를 달지 말아라.
 - 코드 값을 그대로 쓸 때는 그게 어떤 건지 명시를 해주면 좋다. Ex) createTemp() Method 이런식으로 Method라는 걸 알려줌
 - If applied, this commit will (     ) 여기에 넣어서 말이 되면 통과다.
+
+
 
 > - 왜 커밋하려는 패치가 필요한가?<br>
 > - 목적에 어떻게 접근하는가? 포기한 접근 방법이 있다면 기술.<br>
