@@ -24,8 +24,10 @@ Spring
 하나의 객체에서 다른 객체가 필요할 때 직접 생성해서 사용하는 방법과, 필드를 만들어 놓고 setter로 넣거나 생성자를 활용해 외부에서 필요한 객체를 넣어줄 수도 있다.
 
 이 때 필요할 때마다 넣어줄 수 있게 객체들을 담고 있는 컨테이너를 IOC컨테이너라고 한다.
+ 
+ 
 <br>
-
+ 
 
 
 ### DI (Dependency Injection) 의존성 주입
@@ -38,7 +40,7 @@ Spring
 <br>
 
 
-Spring이란 부품을 생성하고 조립하는 라이브러리 집합체이다.
+<b> Spring이란 부품을 생성하고 조립하는 라이브러리 집합체이다. </b>
 
 
 - 작업을 수행하는 쪽에서 Object를 생성하는 제어 흐름의 개념을 거꾸로 뒤집는다.
@@ -166,4 +168,40 @@ XML은 관리와 해석이 어렵고, 어노테이션은 유지보수가 어렵�
 - after-returning
 - after-throwing
 - after
+
+<br>
+
+## JoinPoint 메소드
+>  JoinPoint를 사용하려면 어드바이스 메소드 매개변수로 선언만 하면 된다. <br>
+ 그러면 비즈니스 메소드를 호출할 때, 스프링 컨테이너가 JoinPoint 객체를 생성한다. 그리고 메소드 호출과 관련된 모든 정보를 JoinPoint 객체에 저장하여 어드바이스 메소드를 호출할 때 인자로 넘겨준다.
+
+```java
+
+import org.aspectj.lang.JoinPoint;
+
+public class LogAdvice {
+    public void printLog(JoinPoint jp) {
+        System.out.println("[공통로그] 비즈니스 로직 수행 전 동작");
+    }
+}
+
+```
+
+<br>
+
+메소드|설명|
+----|---|
+Signature getSignature()|클라이언트가 호출한 메소드의 시그니처(리턴타입, 이름, 매개변수) 정보가 저장된 Signature 객체 리턴|
+Object getTarget()|클라이언트가 호출한 비즈니스 메소드를 포함하는 비즈니스 객체 리턴|
+Object[] getArgs()|클라이언트가 메소드를 호출할 때 넘겨준 인자 목록을 Object 배열로 리턴|
+
+<br>
+
+## Signature 메소드
+
+메소드|설명|
+----|---|
+String getName()|클라이언트가 호출한 메소드 이름 리턴|
+String toLongString()|클라이언트가 호출한 메소드의 리턴타입, 이름, 매개변수를 패키지 경로까지 포함하여 리턴|
+String toShortString()|클라이언트가 호출한 메소드 시그니처를 축약한 문자열로 리턴|
 
