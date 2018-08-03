@@ -1,4 +1,7 @@
 20180803_01
+-참고 URL
+http://jangsalt.tistory.com/entry/%EA%B0%80%EB%B3%80-%EC%9D%B8%EC%88%98-vastart-vaend-vaarg-valist
+http://norux.me/19
 
 - 가변인자의 대표적인 예
 int printf(const char* format, ...) 워후
