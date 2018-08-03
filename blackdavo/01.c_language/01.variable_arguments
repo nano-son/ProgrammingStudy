@@ -17,7 +17,7 @@ stdarg.h 헤더 파일 인클루드 <-- 가변인자 함수 만들기 위한 각
 가변인자를 뜻하는 ...은 함수 인자들중에서 가장 뒤쪽에 있어야 함 >_<
 
 -가변인자 함수 예제 
-,,,
+'''
 int sum(int count, ...)
 {
     int res = 0;
@@ -40,7 +40,7 @@ int main()
 
     return 0;
 }
-,,,
+'''
 
 출력결과 :55 ~_~
 
@@ -72,7 +72,7 @@ int vsnprintf(char* dest, size_t maxCount, const char* format, va_list args)
 	리턴값: 문자열의 길이
 
 - vsprintf 예제
-,,,
+'''
 #include <stdio.h>
 #include <stdarg.h>
 #include <string.h>
@@ -101,7 +101,7 @@ int main()
 
     return 0;
 }
-,,,
+'''
 
 출력결과 : [ERROR] Don't divide by 0
 
