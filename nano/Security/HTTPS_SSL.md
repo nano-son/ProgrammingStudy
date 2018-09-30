@@ -28,6 +28,32 @@ CA들 중에서 공인된 기업들도 있고 아닌 기업들도 있는데, 공
 	2. 서버측 공개키: 공개키의 내용, 공개키의 암호화 방법
 </pre>
 
+SSL 인증서에는 단일 표준이 존재하지 않는다. 여러가지 표준화된 서식이 존재한다. 
+다행히도 대부분의 인증서는 X.509 v3 인증서 표준을 따르고 있다.
+(x.509 표준 참고: https://ko.wikipedia.org/wiki/X.509)
+
+X.509 v3의 디지털 인증서의 구조는 아래와 같다.
+<pre>
+
+Certificate
+Version 인증서의 버전을 나타냄
+Serial Number CA가 할당한 정수로 된 고유 번호
+Signature 서명 알고리즘 식별자
+Issuer 발행자
+Validity 유효기간
+Not Before 유효기간 시작 날짜
+Not After 유효기간 끝나는 날짜
+Subject 소유자
+Subject Public Key Info 소유자 공개 키 정보
+Public Key Algorithm 공개 키 알고리즘
+Subject Public Key
+Issuer Unique Identifier (Optional) 발행자 고유 식별자
+Subject Unique Identifier (Optional) 소유자 고유 식별자
+Extensions (Optional) 확장
+...
+Certificate Signature Algorithm
+Certificate Signature (위 모든 필드에 대한 인증기관의 디지털 서명. 명시된 서명 알고리즘(Certificate Signature Algorithm)을 사용한다.)
+</pre>
 
 
 이제, SSL의 동작원리를 살펴봄으로써 HTTPS가 어떻게 암호화된 데이터를 전송하는지 살펴보자.
