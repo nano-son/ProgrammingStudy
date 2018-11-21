@@ -23,3 +23,6 @@ LoadingCache<String, Map<String, Object>> cache = CacheBuilder.newBuilder()
 이렇게 하고 기존에 오래 걸리는 메소드를 호출하는 부분에서 METHOD(key) 이렇게 쓰던걸 cache.get(key) 이렇게 사용하면 된다.
 
 파라미터를 여러 개 전달하고 싶을 땐 key를 String으로 주지 않고 Map형태로 넘겨주면 여러 개의 파라미터를 가진 메소드도 사용할 수 있다.
+
+
+https://google.github.io/guava/releases/16.0/api/docs/com/google/common/cache/CacheBuilder.html
