@@ -26,8 +26,14 @@ const add20 = adder(20);
 add10(1); //11
 ```
 
-부분적용과 커링이 있음.
+- 커링 : 다인수 함수를 일인수 함수들의 체인으로 바꿔주는 방법.
+- 부분적용 : 다인수 함수를 생략될 인수의 값을 미리 정해서 더 적은수의 인수를 받는 하나의 함수로 변형하는 방법.
+
+https://github.com/seongminwoo/study/wiki/%5BFunctional-Programming%5D-%EC%BB%A4%EB%A7%81(currying)%EA%B3%BC-%EB%B6%80%EB%B6%84%EC%A0%81%EC%9A%A9(partial-application)
+
+
 
 http://blog.jeonghwan.net/js/2017/04/17/curry.html
 
 https://rhostem.github.io/posts/2017-04-20-curry-and-partial-application/
+
