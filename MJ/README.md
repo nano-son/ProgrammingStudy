@@ -1,1 +1,1 @@
-이렇게 쓰는건가
+System.out.println("Hello world!");
