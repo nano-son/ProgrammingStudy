@@ -27,3 +27,5 @@ add10(1); //11
 ```
 
 http://blog.jeonghwan.net/js/2017/04/17/curry.html
+
+https://rhostem.github.io/posts/2017-04-20-curry-and-partial-application/
