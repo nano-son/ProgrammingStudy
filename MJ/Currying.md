@@ -26,6 +26,8 @@ const add20 = adder(20);
 add10(1); //11
 ```
 
+부분적용과 커링이 있음.
+
 http://blog.jeonghwan.net/js/2017/04/17/curry.html
 
 https://rhostem.github.io/posts/2017-04-20-curry-and-partial-application/
