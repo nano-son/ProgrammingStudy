@@ -14,9 +14,6 @@ var wizard = {
   heal: function() {
     this.hp++
   }
-  add: function(a, b, c, d) {
-    return a+b+c+d
-  }
 };
 
 var warrior = {
@@ -24,4 +21,18 @@ var warrior = {
 }
 
 wizard.heal.call(warrior);
+```
+call에 첫 번째 인자로 넘겨주는 객체가 this로 할당된다.
+
+```
+const 큰돌 = {
+    "이름": "큰돌"
+}
+
+function editmyresume(능력, 힘) {
+    this.능력 = 능력
+    this.힘 = 힘
+} 
+editmyresume.call(큰돌, "Vue.js", "팔굽혀펴기") 
+console.log(큰돌)
 ```
