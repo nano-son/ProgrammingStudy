@@ -36,3 +36,25 @@ function editmyresume(능력, 힘) {
 editmyresume.call(큰돌, "Vue.js", "팔굽혀펴기") 
 console.log(큰돌)
 ```
+
+- bind
+call, apply가 자신이 붙어있는 함수를 바로 실행시키는 반면, bind는 그렇지 않다.
+bind는 대상 함수의 사본을 만든다.
+
+```
+var log = function() {
+  colsole.log('Logged: ' + this.greet());
+}
+
+log(); //Error
+
+var person = {
+  name: 'John',
+  greet: function() {
+    return 'Hello ' + this.name;
+  }
+}
+var logBind = log.bind(person);
+
+logBind(); //Hello John
+```
