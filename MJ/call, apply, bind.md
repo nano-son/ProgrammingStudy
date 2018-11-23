@@ -22,7 +22,7 @@ var warrior = {
 
 wizard.heal.call(warrior);
 ```
-call에 첫 번째 인자로 넘겨주는 객체가 this로 할당된다.
+call과 apply에 첫 번째 인자로 넘겨주는 객체가 this로 할당된다.
 
 ```
 const 큰돌 = {
